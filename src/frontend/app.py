@@ -8,7 +8,6 @@ def set_first_message():
 
 def get_response(prompt):
     try:
-        # Agregar timeout y manejo de errores
         response = httpx.post("http://localhost:8000/chat", json={"prompt": prompt}, timeout=120.0)
         return response
     except httpx.ReadTimeout:
@@ -19,7 +18,14 @@ def get_response(prompt):
         st.error(f"Error al conectar con el servidor: {e}")
         return None
 
-st.title("A-BOT")
+st.title("🤖 A-BOT - El asistente virtual de Adam")
+st.markdown("---")
+st.markdown("### 👋 ¡Bienvenido!")
+st.markdown("Este bot ha sido diseñado para responder todas tus preguntas sobre **Adam** y su experiencia profesional.")
+st.markdown("")
+st.markdown("💼 **Puedes preguntarle sobre:** Experiencia laboral, habilidades técnicas, proyectos, educación y más información relacionada.")
+st.markdown("")
+st.markdown("*¡Adelante, pregunta lo que quieras!* 🚀")
 
 
 if "messages" not in st.session_state:
@@ -37,7 +43,6 @@ if prompt := st.chat_input("Escribe tu mensaje aquí..."):
         st.markdown(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    # Mostrar indicador de carga
     with st.spinner("A-BOT está pensando..."):
         response = get_response(prompt)
     
