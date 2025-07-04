@@ -1,0 +1,28 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Instalar solo Ollama
+RUN apt-get update && apt-get install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Instalar Ollama
+RUN curl -fsSL https://ollama.ai/install.sh | sh
+
+# Copiar requirements e instalar dependencias Python
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar código del backend
+COPY src/backend/ ./backend/
+
+# Script de inicialización para descargar el modelo
+COPY docker/init_model.sh .
+RUN chmod +x init_model.sh
+
+# Exponer puerto
+EXPOSE 8000
+
+# Comando para ejecutar la aplicación
+CMD ["./init_model.sh"] 
