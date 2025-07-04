@@ -1,14 +1,16 @@
 # 🤖 A-BOT - Asistente Virtual de Adam
 
-## �� Descripción
+## Descripción
 
-A-BOT es un asistente virtual inteligente diseñado para responder preguntas sobre **Adam Malti Sobrino**, un desarrollador backend con más de 3 años de experiencia. El bot utiliza inteligencia artificial para proporcionar información detallada sobre su experiencia profesional, habilidades técnicas, proyectos y más.
+A-BOT es mi asistente virtual creado por y para vosotros, que os contestará cualquier pregunta relacionada sobre mí y el mundo laboral.
 
-## �� Características
+**💡 Este proyecto ha sido desarrollado con la ayuda de [Cursor](https://cursor.sh).**
+
+## ✨ Características
 
 - **Chat interactivo**: Interfaz web amigable para conversar con el bot
 - **Información completa**: Respuestas sobre experiencia laboral, habilidades, proyectos y educación
-- **IA avanzada**: Utiliza el modelo `phi4-mini` a través de Ollama para respuestas inteligentes
+- **IA avanzada**: Utiliza el modelo `phi4-mini` a través de Ollama para respuestas inteligentes, pensando en aquellas personas que tengan PC poco potentes
 - **Arquitectura moderna**: Backend en FastAPI y frontend en Streamlit
 - **Dockerizado**: Fácil despliegue y ejecución con Docker
 
@@ -43,6 +45,10 @@ El proyecto está estructurado en dos componentes principales:
 ### DevOps
 - **Docker**: Containerización de la aplicación
 - **Docker Compose**: Orquestación de servicios
+
+## ⚠️ Importante
+
+> **⚠️ Primera ejecución lenta**: La primera vez que ejecutes el proyecto, tardará varios minutos en descargar el modelo de IA `phi4-mini` (~3GB). Las siguientes ejecuciones serán mucho más rápidas.
 
 ## 📦 Instalación y Configuración
 
@@ -124,8 +130,6 @@ El proyecto está estructurado en dos componentes principales:
 
 - "¿Cuál es la experiencia laboral de Adam?"
 - "¿Qué tecnologías domina?"
-- "¿Dónde ha trabajado?"
-- "¿Cuáles son sus habilidades en bases de datos?"
+- "¿Dónde ha trabajado en 2022?"
+- "¿Sabe programar con APIs?"
 - "¿Qué metodologías utiliza?"
-
-## 📄 Estructura del Proyecto 
