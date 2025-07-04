@@ -1,3 +1,7 @@
 langchain
 langchain-ollama
 ollama
+streamlit
+fastapi
+uvicorn[standard]
+httpx
