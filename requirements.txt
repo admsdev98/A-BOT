@@ -1,5 +1,7 @@
 langchain
+langchain-core
 langchain-ollama
+sentence-transformers
 ollama
 streamlit
 fastapi

@@ -23,7 +23,7 @@ st.markdown("---")
 st.markdown("### 👋 ¡Bienvenido!")
 st.markdown("Este bot ha sido diseñado para responder todas tus preguntas sobre **Adam** y su experiencia profesional.")
 st.markdown("")
-st.markdown("💼 **Puedes preguntarle sobre:** Experiencia laboral, habilidades técnicas, proyectos, educación y más información relacionada.")
+st.markdown("**Puedes preguntarle sobre:** Experiencia laboral, habilidades técnicas, proyectos, educación y más información relacionada.")
 st.markdown("")
 st.markdown("*¡Adelante, pregunta lo que quieras!* 🚀")
 
