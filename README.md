@@ -17,16 +17,16 @@ Se caracteriza por una configuración sencilla, uso intuitivo y rendimiento ági
 ## Tecnologías Utilizadas
 
 ### Backend
-**Python** / **FastAPI** / **Uvicorn** / **LangChain** / **Ollama** / **Pydantic**
+Python / FastAPI / Uvicorn / LangChain / Ollama / Pydantic
 
 ### Frontend
-**Streamlit** / **HTTPX** (cliente HTTP asíncrono)
+Streamlit / HTTPX (cliente HTTP asíncrono)
 
 ### IA
-**Ollama** / **GPT-3.5** 
+Ollama / GPT-3.5 
 
 ### Otros
-**Docker** / **Docker Compose**
+Docker / Docker Compose
 
 ## Importante
 
