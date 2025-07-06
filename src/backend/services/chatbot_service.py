@@ -11,7 +11,7 @@ from langchain_ollama import OllamaLLM
 #PERSONAL_DATA_PATH = load_env_file()
 PERSONAL_DATA_PATH = Path(__file__).parents[1] / "config" / "personal_data.md"
 
-def get_chat_response(prompt):
+def get_chat_response(user_message):
     template = """
     Eres el asistente virtual de un desarrollador backend con experiencia en Python y PHP(Yii2).
     
@@ -33,14 +33,14 @@ def get_chat_response(prompt):
     model = OllamaLLM(model="phi4-mini")
     prompt_template = PromptTemplate.from_template(template)
     chain = prompt_template | model
-    return chain.invoke({"context": retrieve_best_similarities(prompt), "question": prompt.prompt}) 
+    return chain.invoke({"context": retrieve_best_similarities(user_message), "question": user_message}) 
 
 def load_md_file(file_path):
     path = Path(file_path)
     with open(path, "r") as file:
         return file.read()
 
-def retrieve_best_similarities(prompt):
+def retrieve_best_similarities(user_message):
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=20)
     vectorizer = SentenceTransformer("all-MiniLM-L6-v2")
 
@@ -50,7 +50,7 @@ def retrieve_best_similarities(prompt):
     md_embeddings = vectorizer.encode(md_chunks, convert_to_tensor=True)
 
     # Vectorizamos el prompt
-    prompt_embedding = vectorizer.encode(prompt.prompt, convert_to_tensor=True)
+    prompt_embedding = vectorizer.encode(user_message, convert_to_tensor=True)
 
     # Obtenemos los 'hits' y los chunks más relevantes
     hits = util.semantic_search(prompt_embedding, md_embeddings, top_k=3)

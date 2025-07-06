@@ -6,9 +6,9 @@ def set_first_message():
     st.session_state.messages.append({"role": "assistant", "content": first_message})
     st.session_state.first_message = True
 
-def get_response(prompt):
+def get_response(user_message):
     try:
-        response = httpx.post("http://localhost:8000/chat", json={"prompt": prompt}, timeout=120.0)
+        response = httpx.post("http://localhost:8000/chat", json={"user_message": user_message}, timeout=120.0)
         return response
     except httpx.ReadTimeout:
         st.error("La respuesta está tardando más de lo esperado. Por favor, intenta de nuevo.")
@@ -38,13 +38,13 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if prompt := st.chat_input("Escribe tu mensaje aquí..."):
+if user_message := st.chat_input("Escribe tu mensaje aquí..."):
     with st.chat_message("user"):
-        st.markdown(prompt)
-    st.session_state.messages.append({"role": "user", "content": prompt})
+        st.markdown(user_message)
+    st.session_state.messages.append({"role": "user", "content": user_message})
 
     with st.spinner("A-BOT está pensando..."):
-        response = get_response(prompt)
+        response = get_response(user_message)
     
     if response and response.status_code == 200:
         with st.chat_message("assistant"):
