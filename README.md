@@ -34,10 +34,29 @@ Docker / Docker Compose
 
 ## Instalación y Configuración
 
+
 ### Prerrequisitos
 
 - **Docker** y **Docker Compose** instalados
 - **4GB+ de RAM** para ejecutar el modelo LLM preconfigurado
+
+   **Obligatorio**: A-BOT requiere Ollama instalado en tu sistema para funcionar con modelos locales.
+
+   1. **Instalar Ollama:**
+   [Descargar desde la página oficial][ollama-download]
+
+   [ollama-download]: https://ollama.ai/download
+
+   2. **Descargar el modelo requerido:**
+      ```bash
+      ollama pull phi4-mini
+      ```
+   [ollama-models]: https://github.com/ollama/ollama?tab=readme-ov-file#model-library
+
+   3. **Verificar la instalación:**
+      ```bash
+      ollama list
+      ```
 
 
 ### Instalación con Docker (Recomendado)
@@ -57,46 +76,16 @@ Docker / Docker Compose
 3. **Acceder a la aplicación:**
    - Frontend: http://localhost:8501
    - Backend API: http://localhost:8000
+   - API Docs: http://localhost:8000/docs
 
-### Instalación Local (sin Docker)
+### Acceso a contenedores
 
-1. **Clonar el repositorio:**
-   ```bash
-   git clone <url-del-repositorio>
-   cd A-BOT
-   ```
+```bash
+# Frontend (Streamlit)
+docker-compose exec frontend streamlit run app.py --server.port 8501
 
-2. **Crear entorno virtual:**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # Linux/Mac
-   # o
-   venv\Scripts\activate     # Windows
-   ```
+# Backend (FastAPI) - Modelo local
+docker-compose exec backend uvicorn main:app --reload --port 8000
 
-3. **Instalar dependencias:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Instalar Ollama:**
-   ```bash
-   curl -fsSL https://ollama.ai/install.sh | sh
-   ```
-
-5. **Descargar el modelo predefinido:**
-   ```bash
-   ollama pull phi4-mini
-   ```
-
-6. **Ejecutar el backend:**
-   ```bash
-   cd src/backend
-   uvicorn main:app --reload --host 0.0.0.0 --port 8000
-   ```
-
-7. **Ejecutar el frontend (nueva terminal):**
-   ```bash
-   cd src/frontend
-   streamlit run app.py
-   ```
+# Backend (FastAPI) - Modelo OpenAI
+docker-compose exec backend bash -c "ABOT_MODEL=openai uvicorn main:app --reload --port 8000"

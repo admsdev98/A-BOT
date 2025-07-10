@@ -1,0 +1,28 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copiar requirements e instalar dependencias Python
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar código del backend
+COPY src/backend/ ./backend/
+
+# Copiar archivo de configuración personal
+COPY src/backend/config/personal_data.md ./backend/config/
+
+# Exponer puerto
+EXPOSE 8000
+
+# Variables de entorno por defecto
+ENV ABOT_MODEL=local
+ENV PERSONAL_DATA_MD_PATH=/app/backend/config/personal_data.md
+
+# Comando para ejecutar la aplicación
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"] 
