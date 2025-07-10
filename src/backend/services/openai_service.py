@@ -1,10 +1,8 @@
 import os
-from pathlib import Path
 
 from dotenv import load_dotenv, find_dotenv
 from openai import OpenAI
-
-from services.rag_service import retrieve_best_similarities, get_model_context
+from services.rag_service import retrieve_relevant_context, get_system_prompt
 
 load_dotenv(find_dotenv())
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -23,20 +21,19 @@ def send_message(client, messages):
     except Exception as e:
         return {"error": str(e)}
 
-def get_chat_response(user_message):
+def get_openai_response(user_query):
     client = init_client()
-    retrieved_context = retrieve_best_similarities(user_message)
+    retrieved_context = retrieve_relevant_context(user_query)
 
     messages = [
-        {"role": "system", "content": get_model_context()},
+        {"role": "system", "content": get_system_prompt()},
         {"role": "assistant", "content": f"Contexto relevante:\n{retrieved_context}"},
-        {"role": "user", "content": user_message}
+        {"role": "user", "content": user_query}
     ]
 
     return send_message(client, messages)
 
-
-def validate_key():
+def validate_openai_api_key():
     try:
         client = init_client()
         return send_message(client, "My API key is valid?")

@@ -1,32 +1,85 @@
-# Información Personal de Adam Malti Sobrino
-
-Adam Malti Sobrino, nacio en Ourense, el 2 de enero de 1998, y actualmente vive en Cuenca, España.
-Es un programador backend, aunque tambien le gusta hacer cosas de frontend, y curiosiear y practicar con inteligencia artifical.
-
-Sus formas de contacto son por email, y tendrian que escribirle a 'adam98develop@gmail.com', o por Linkedin https://www.linkedin.com/in/adam-malti-sobrino-5b199a214
+## Información Personal
+- Nombre: Adam Malti Sobrino
+- Fecha de nacimiento: 2 de enero de 1998
+- Lugar de nacimiento: Ourense, España
+- Residencia actual: Cuenca, España
+- Email: adam98develop@gmail.com
+- LinkedIn: https://www.linkedin.com/in/adam-malti-sobrino-5b199a214
 
 ## Perfil Profesional
-
-Adam es un programador backend, especializado en PHP y un framework llamado Yii2, en Python, usando librerias como FastAPI, y en Typescript y NodeJS. Tambien tiene algo de conocimiento en herramientas como Angular, y esta aprendiendo React.
-
-Tambien ha trabajado con bases de datos como MySql, PostgreSQL y MongoDB. Conoce otras tecnologias como Redis, ElasticSearch y trabaja
-con Jira, Kanban, etc.
+Adam Malti Sobrino es un programador backend especializado en desarrollo web y aplicaciones empresariales. Combina experiencia en múltiples tecnologías con un enfoque en soluciones escalables y eficientes.
 
 ## Experiencia Laboral
 
-Adam estuvo trabajando en 2021, 2022, 2023, 2024 y hasta marzo de 2025 en Funiglobal, una empresa de disfraces de Zaragoza. Aqui es donde aprendio todo lo que sabe hasta dia de hoy, y ayudo al equipo de desarrollo ofreciendo soporte, desarrollando nuevas funcionalidades e integrando servicios de terceros (APIs), como por ejemplo servicios de transportistas para que los clientes puedan
-comprar y se generen etiquetas de envio, seguimientos de tracking, y tambien APIs para buscadores web con Elastic, entre mucha otras cosas.
+### Funiglobal (2021 - Marzo 2025)
+- Empresa: Funiglobal, empresa de disfraces de Zaragoza
+- Rol: Programador backend
+- Responsabilidades:
+  - Desarrollo de nuevas funcionalidades
+  - Soporte al equipo de desarrollo
+  - Integración de APIs de terceros
+  - Implementación de servicios de transportistas
+  - Generación de etiquetas de envío y seguimiento de tracking
+  - Integración con ElasticSearch para búsquedas web
+  - Desarrollo de funcionalidades empresariales
+- Tecnologias o lenguajes usados:
+    - PHP y Yii2
+    - Python
+    - NodeJS
+    - Typescript
+    - MySql, PostgreSQL
+    - Redis, RabbitMQ, ElasticSearch
 
-En Marzo de 2025, cambio de empresa, y actualmente esta trabajando en Bahia Software, aunque, esta dando soporte al area financiera de Inditex, con herramientas como MongoDB y MySql, y otras herramientas interas.
+### Bahia Software (Marzo 2025 - Presente)
+- Empresa: Bahia Software
+- Rol: Soporte al área financiera de Inditex
+- Tecnologías: MongoDB, MySQL, herramientas internas
 
 ## Stack Tecnológico
 
-Adam domina varios lenguajes de programación incluyendo Python, PHP con Yii2, Node.js, TypeScript y SQL. Su experiencia en bases de datos abarca sistemas relacionales como MySQL y PostgreSQL, así como bases de datos NoSQL como MongoDB y Redis. Utiliza herramientas de desarrollo como Git para control de versiones, ElasticSearch para búsquedas avanzadas, RabbitMQ para mensajería asíncrona, y Docker para containerización. En el frontend tiene experiencia con el framework Angular.
+### Lenguajes de Programación
+- PHP con framework Yii2
+- Python con librerías como FastAPI
+- TypeScript y Node.js
+- SQL
+
+### Bases de Datos
+- Relacionales: MySQL, PostgreSQL
+- NoSQL: MongoDB, Redis
+
+### Herramientas y Tecnologías
+- Control de versiones: Git
+- Búsquedas: ElasticSearch
+- Mensajería: RabbitMQ
+- Containerización: Docker
+- Gestión de proyectos: Jira, Kanban
+
+### Frontend
+- Angular (experiencia)
+- React (en aprendizaje)
 
 ## Competencias Lingüísticas
-
-Adam es hablante nativo de español y se defiende con el ingles, teniendo un nivel de inglés que le permite comprender textos técnicos, escuchar en ingles e incluso escribir, aunque prefiere apoyo para la escritura formal en inglés. Sobre hablar en Ingles, es algo que sabe que tiene mejorar y que esta en proceso de aprendizaje y practica.
+- Español: Nativo
+- Inglés: Nivel técnico, comprensión de textos, escucha y escritura básica. En proceso de mejora para conversación.
 
 ## Intereses y Especialización
+- Inteligencia Artificial: Interés particular en modelos de lenguaje grandes (LLMs)
+- Proyectos personales: Experimentación con LangChain y Ollama
+- Desarrollo de aplicaciones inteligentes
+- Procesamiento de lenguaje natural
+- Integración con OpenAI
+- Desarrollo de portales web
 
-Adam muestra un interés particular en el campo de la inteligencia artificial, especialmente en los modelos de lenguaje grandes (LLMs). Dedica tiempo a proyectos personales relacionados con IA, experimentando con frameworks como LangChain y Ollama para desarrollar aplicaciones inteligentes y sistemas de procesamiento de lenguaje natural. Ademas, esta acabando varios proyectos relacionados también con OpenAI, portales web y cositas que ya ira sacando poco a poco.
+## Proyectos y Logros
+- Desarrollo de sistemas de integración con APIs de transportistas
+- Implementación de sistemas de tracking y seguimiento
+- Integración de ElasticSearch para búsquedas avanzadas
+- Proyectos personales en IA y procesamiento de lenguaje natural
+- Desarrollo de aplicaciones web empresariales
+
+## Habilidades Adicionales
+- Desarrollo de APIs RESTful
+- Integración de servicios de terceros
+- Optimización de bases de datos
+- Desarrollo de aplicaciones escalables
+- Trabajo en equipo y soporte técnico 

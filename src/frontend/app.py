@@ -1,15 +1,19 @@
 import streamlit as st
 import httpx
 
+with open("styles/style.css") as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
 def set_first_message():
     first_message = "Hola, soy A-BOT, el asistente virtual de Adam. ¿En qué puedo ayudarte hoy?"
     st.session_state.messages.append({"role": "assistant", "content": first_message})
     st.session_state.first_message = True
 
-def get_response(user_message):
+def get_response(user_query):
     try:
-        response = httpx.post("http://localhost:8000/chat", json={"user_message": user_message}, timeout=120.0)
-        return response
+        response = httpx.post("http://localhost:8000/api/v1/chatbot", json={"user_query": user_query}, timeout=120.0)
+        data = response.json()
+        return data["response"]
     except httpx.ReadTimeout:
         st.error("La respuesta está tardando más de lo esperado. Por favor, intenta de nuevo.")
         st.session_state.messages.append({"role": "assistant", "content": "La respuesta está tardando más de lo esperado. Por favor, intenta de nuevo."})
@@ -38,15 +42,15 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if user_message := st.chat_input("Escribe tu mensaje aquí..."):
+if user_query := st.chat_input("Escribe tu mensaje aquí..."):
     with st.chat_message("user"):
-        st.markdown(user_message)
-    st.session_state.messages.append({"role": "user", "content": user_message})
+        st.markdown(user_query)
+    st.session_state.messages.append({"role": "user", "content": user_query})
 
     with st.spinner("A-BOT está pensando..."):
-        response = get_response(user_message)
+        response = get_response(user_query)
     
-    if response and response.status_code == 200:
+    if response:
         with st.chat_message("assistant"):
-            st.markdown(response.json()["response"])
-        st.session_state.messages.append({"role": "assistant", "content": response.json()["response"]})
+            st.markdown(response)
+        st.session_state.messages.append({"role": "assistant", "content": response})
