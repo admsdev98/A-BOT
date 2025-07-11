@@ -2,7 +2,7 @@ import os
 
 from dotenv import load_dotenv, find_dotenv
 from openai import OpenAI
-from services.rag_service import retrieve_relevant_context, get_system_prompt
+from services.chat.rag_service import retrieve_relevant_context, get_system_prompt
 
 load_dotenv(find_dotenv())
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -17,7 +17,7 @@ def send_message(client, messages):
             messages=messages,
             temperature=0.7
         )
-        return completion.choices[0].message.content
+        return '(OPENAI) -' + completion.choices[0].message.content
     except Exception as e:
         return {"error": str(e)}
 
@@ -32,11 +32,4 @@ def get_openai_response(user_query):
     ]
 
     return send_message(client, messages)
-
-def validate_openai_api_key():
-    try:
-        client = init_client()
-        return send_message(client, "My API key is valid?")
-    except Exception as e:
-        return {"error": f"Failed to validate OpenAI key: {str(e)}"}
     

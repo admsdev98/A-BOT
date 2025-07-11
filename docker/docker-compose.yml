@@ -12,6 +12,8 @@ services:
       - ABOT_MODEL=local
       - PERSONAL_DATA_MD_PATH=/app/backend/config/personal_data.md
       - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - FRONT_URI=${FRONT_URI:-localhost}
+      - FRONT_HOST=${FRONT_HOST:-8501}
     restart: unless-stopped
 
   frontend:

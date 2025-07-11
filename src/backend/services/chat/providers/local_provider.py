@@ -1,7 +1,7 @@
 from langchain.prompts import PromptTemplate
 from langchain_ollama import OllamaLLM
 
-from services.rag_service import retrieve_relevant_context, get_chatbot_prompt_template
+from services.chat.rag_service import retrieve_relevant_context, get_chatbot_prompt_template
 
 
 def generate_local_chat_response(user_query: str) -> str:
@@ -18,7 +18,7 @@ def generate_local_chat_response(user_query: str) -> str:
             "question": user_query
         })
         
-        return str(response)
+        return '(LOCAL) - ' + str(response)
         
     except Exception as e:
         return "Error interno del servidor. Por favor, intenta de nuevo." 
