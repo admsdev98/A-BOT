@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv, find_dotenv
-from interfaces.chatbot import ChatRequest
 
+from interfaces.chatbot import ChatRequest
 from services.chat.providers.openai_provider import get_openai_response
 from services.chat.providers.local_provider import get_local_chat_response
 

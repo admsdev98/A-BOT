@@ -65,3 +65,10 @@ def validate_auth_url_parameters():
         return False
     
     return None
+
+def validate_user_auth_by_ip():
+    response = httpx.get("http://localhost:8000/api/v1/auth-validate-session-ip", timeout=120.0)
+
+    st.markdown(f"User auth by ip: {response.json()}")
+
+    return response.json()

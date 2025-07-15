@@ -2,6 +2,7 @@ import os
 
 from dotenv import load_dotenv, find_dotenv
 from openai import OpenAI
+
 from services.chat.rag_service import retrieve_relevant_context, get_system_prompt
 
 load_dotenv(find_dotenv())

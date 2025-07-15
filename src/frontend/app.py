@@ -1,6 +1,6 @@
 import streamlit as st
 from auth import show_auth_dialog
-from api_client import get_chat_response, validate_auth_url_parameters, validate_if_user_token_is_alive
+from api_client import get_chat_response, validate_auth_url_parameters, validate_if_user_token_is_alive, validate_user_auth_by_ip
 
 def set_first_message():
     first_message = "Hola, soy A-BOT, el asistente virtual de Adam. ¿En qué puedo ayudarte hoy?"
@@ -69,7 +69,7 @@ if "messages" not in st.session_state:
 if "first_message" not in st.session_state:
     set_first_message()
 
-if not st.session_state["user_token"]:
+if not st.session_state["user_token"] and not validate_user_auth_by_ip().get("exists"):
     show_auth_dialog()
 
 for message in st.session_state.messages:

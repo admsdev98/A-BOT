@@ -1,9 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 
 from interfaces.chatbot import ChatRequest
 from interfaces.auth import AuthRequest
 from controllers.api_controller import process_chat_request, process_auth_request, process_validate_openai_api_key
-from controllers.callback_controller import get_google_auth_response, get_github_auth_response, process_auth_validate_session_request
+from controllers.callback_controller import get_google_auth_response, get_github_auth_response, process_auth_validate_session_request, process_auth_validate_session_ip_request
 
 router = APIRouter()
 
@@ -23,10 +23,14 @@ async def handle_auth_endpoint(auth_method: AuthRequest):
 async def handle_auth_validate_session_endpoint(cookie_session: str):
     return process_auth_validate_session_request(cookie_session)
 
+@router.get("/auth-validate-session-ip")
+async def handle_auth_validate_session_ip_endpoint(request: Request):
+    return process_auth_validate_session_ip_request(request)
+
 @router.get("/auth/google/callback")
-async def handle_google_auth_endpoint(code):
-    return await get_google_auth_response(code) 
+async def handle_google_auth_endpoint(code, request: Request):
+    return await get_google_auth_response(code, request) 
 
 @router.get("/auth/github/callback")
-async def handle_github_auth_endpoint(code):
-    return await get_github_auth_response(code) 
+async def handle_github_auth_endpoint(code, request: Request):
+    return await get_github_auth_response(code, request) 
