@@ -1,5 +1,6 @@
 import httpx
 import streamlit as st
+import streamlit.components.v1 as components
 
 def get_chat_response(user_query):
     try:
@@ -17,18 +18,38 @@ def get_chat_response(user_query):
     except Exception as e:
         raise ConnectionError(f"Error al conectar con el servidor: {e}")
 
-def set_google_auth_token(auth_method):
+
+def check_if_user_is_authenticated():
+    if not st.session_state.get("user_token"):
+        return False
+    
+    st.markdown(f"User token: {st.session_state.get('user_token')}")
+    is_alive = validate_if_user_token_is_alive(st.session_state.get("user_token"))
+
+    if is_alive:
+        return True
+    else:
+        return False
+
+def set_user_auth_token(auth_method):
     try:
         response = httpx.post("http://localhost:8000/api/v1/auth", json={"auth_method": auth_method}, timeout=120.0)
         return response.json()
     except Exception as e:
         raise ConnectionError(f"Error al conectar con el servidor: {e}")
 
-def handle_url_params():
+def validate_if_user_token_is_alive(session_cookie):
+    try:
+        response = httpx.get("http://localhost:8000/api/v1/auth-validate-session", params={"cookie_session": session_cookie}, timeout=120.0)
+        return response.json()
+    except Exception as e:
+        raise ConnectionError(f"Error al conectar con el servidor: {e}")
+
+def validate_auth_url_parameters():
     params = st.query_params
     
     if "token" in params and params["token"]:
-        st.success("¡Genial! Ya puedes chatear con A-BOT.")
+        st.toast("¡Genial! Ya puedes chatear con A-BOT.")
         st.session_state["user_token"] = params["token"]
         st.query_params.clear()
         return True

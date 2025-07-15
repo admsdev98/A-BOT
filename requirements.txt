@@ -11,3 +11,4 @@ httpx
 # Customs
 debugpy
 openai
+redis

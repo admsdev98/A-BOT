@@ -107,7 +107,7 @@ def get_chatbot_prompt_template():
 def retrieve_relevant_context(user_query):
     # Dependiendo del modelo utilizado, el tamaño del chunk puede necesitar diferentes valores (OpenAI 500, phi4-mini 100-150 para PCs de gama baja)
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=800, chunk_overlap=150)
-    vectorizer = SentenceTransformer("all-MiniLM-L6-v2")
+    vectorizer = SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
 
     # Vectorizamos el archivo MD
     md_file = load_personal_data_file(PERSONAL_DATA_PATH)

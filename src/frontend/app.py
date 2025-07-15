@@ -1,6 +1,6 @@
 import streamlit as st
 from auth import show_auth_dialog
-from api_client import get_chat_response, handle_url_params
+from api_client import get_chat_response, validate_auth_url_parameters, validate_if_user_token_is_alive
 
 def set_first_message():
     first_message = "Hola, soy A-BOT, el asistente virtual de Adam. ¿En qué puedo ayudarte hoy?"
@@ -20,6 +20,13 @@ def main_chat():
             st.session_state["tried_send"] = True
             st.rerun()
         else:
+            session_is_alive = validate_if_user_token_is_alive(st.session_state["user_token"])
+
+            if session_is_alive.get("exists") == False:
+                st.session_state["user_token"] = None
+                st.session_state["session_has_expired"] = True
+                st.rerun()
+
             user_query = st.session_state.pop("input_text_saved", user_query)
 
             with st.chat_message("user"):
@@ -38,7 +45,7 @@ def main_chat():
                     st.markdown(response)
                 st.session_state.messages.append({"role": "assistant", "content": response})
 
-handle_url_params()
+validate_auth_url_parameters()
 
 if "user_token" not in st.session_state:
     st.session_state["user_token"] = None
@@ -49,10 +56,12 @@ if "tried_send" not in st.session_state:
 if "input_text_saved" not in st.session_state:
     st.session_state["input_text_saved"] = ""
 
-st.title("🤖 A-BOT - El asistente virtual de Adam")
+if "session_has_expired" not in st.session_state:
+    st.session_state["session_has_expired"] = False
+
+st.title("A-BOT - El asistente virtual de Adam")
 st.markdown("---")
-st.markdown("### 👋 ¡Bienvenido!")
-st.markdown("Este bot ha sido diseñado para responder todas tus preguntas sobre **Adam** y su experiencia profesional.")
+
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -60,15 +69,11 @@ if "messages" not in st.session_state:
 if "first_message" not in st.session_state:
     set_first_message()
 
+if not st.session_state["user_token"]:
+    show_auth_dialog()
+
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if not st.session_state["user_token"]:
-    show_auth_dialog()
-
 main_chat()
-
-# Mantener el modal si el usuario intenta enviar sin autenticarse
-if not st.session_state["user_token"] and st.session_state["tried_send"]:
-    show_auth_dialog()

@@ -4,7 +4,7 @@ from langchain_ollama import OllamaLLM
 from services.chat.rag_service import retrieve_relevant_context, get_chatbot_prompt_template
 
 
-def generate_local_chat_response(user_query: str) -> str:
+def get_local_chat_response(user_query: str) -> str:
     """Obtiene respuesta del chat usando el modelo local."""
     try:
         prompt_template = get_chatbot_prompt_template()

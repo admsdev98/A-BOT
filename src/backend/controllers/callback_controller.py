@@ -1,27 +1,28 @@
-import os
 from services.auth.providers.google_service import get_google_auth_data
+from services.auth.providers.github_service import get_github_auth_data
+from services.cookie.cookie_service import set_cookie_and_redirect, validate_if_user_token_is_alive
+from db.redis_session_store import save_session_token
 
-async def handle_google_auth_callback(code):
+async def get_google_auth_response(code):
     try:
         auth_data = await get_google_auth_data(code)
 
-        if auth_data.get("error"):
-            redirect_url = build_redirect_url(None, auth_data.get("error"))
-            return {"success": False, "redirect_url": redirect_url}
-        
-        redirect_url = build_redirect_url(auth_data.get("token"))
-        return {"success": True, "redirect_url": redirect_url}
-    except Exception as e:
-        redirect_url = build_redirect_url(None, "auth_failed")
-        return {"success": False, "redirect_url": redirect_url}
+        save_session_token(str(auth_data.get("session_id")), str(auth_data.get("token")))
+        return set_cookie_and_redirect(auth_data)
+    except Exception:
+        return set_cookie_and_redirect(None)
 
-def build_redirect_url(token=None, error=None):
-    front_uri = os.getenv("FRONT_URI", "localhost")
-    front_host = os.getenv("FRONT_HOST", "8501")
-    
-    if token:
-        return f"http://{front_uri}:{front_host}/?token={token}"
-    elif error:
-        return f"http://{front_uri}:{front_host}/?error={error}"
-    else:
-        return f"http://{front_uri}:{front_host}/?error=unknown_error"
+async def get_github_auth_response(code):
+    try:
+        auth_data = await get_github_auth_data(code)
+        save_session_token(str(auth_data.get("session_id")), str(auth_data.get("token")))
+        return set_cookie_and_redirect(auth_data)
+    except Exception:
+        return set_cookie_and_redirect(None)
+
+def process_auth_validate_session_request(cookie_session):
+    return validate_if_user_token_is_alive(cookie_session)
+
+
+
+
