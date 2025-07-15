@@ -1,6 +1,5 @@
 import httpx
 import streamlit as st
-import streamlit.components.v1 as components
 
 def get_chat_response(user_query):
     try:
@@ -51,6 +50,8 @@ def validate_auth_url_parameters():
     if "token" in params and params["token"]:
         st.toast("¡Genial! Ya puedes chatear con A-BOT.")
         st.session_state["user_token"] = params["token"]
+        if "auth_failure_reason" in st.session_state:
+            del st.session_state["auth_failure_reason"]
         st.query_params.clear()
         return True
     elif "error" in params and params["error"]:
@@ -68,7 +69,4 @@ def validate_auth_url_parameters():
 
 def validate_user_auth_by_ip():
     response = httpx.get("http://localhost:8000/api/v1/auth-validate-session-ip", timeout=120.0)
-
-    st.markdown(f"User auth by ip: {response.json()}")
-
-    return response.json()
+    return response.json() 

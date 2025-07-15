@@ -1,0 +1,1 @@
+# Módulo app para funcionalidades de la aplicación 

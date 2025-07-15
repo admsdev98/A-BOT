@@ -1,13 +1,20 @@
 import streamlit as st
-from api_client import set_user_auth_token
+from services.api_client import set_user_auth_token
 
-@st.dialog("🔐 Login")
+@st.dialog("Login")
 def show_auth_dialog():
 
-    if st.session_state.get("session_has_expired"):
-        st.markdown("Ops. Parece que tu sesión ha expirado. Por favor, inicia sesión de nuevo.")
+    # Mostrar mensaje específico según el estado
+    if st.session_state.get("auth_failure_reason") == "session_expired":
+        st.markdown("### Oops, parece que tu sesión ha expirado")
+        st.markdown("Por seguridad, las sesiones caducan automáticamente. Por favor, inicia sesión de nuevo para continuar.")
+    elif st.session_state.get("tried_send") or st.session_state.get("auth_failure_reason") == "no_ip_session":
+        st.markdown("Necesitas iniciar sesión para poder chatear con A-BOT. Esto nos ayuda a garantizar un uso responsable.")
     else:
-        st.markdown("### Puedes iniciar sesión con:")
+        st.markdown("### 👋 ¡Bienvenido a A-BOT!")
+        st.markdown("Para empezar a chatear, necesitas autenticarte con uno de estos proveedores:")
+
+    st.markdown("### Puedes iniciar sesión con:")
 
     st.markdown("""
     <style>
@@ -154,4 +161,4 @@ def show_auth_dialog():
         st.error(f"Error al iniciar autenticación con LinkedIn, Google o GitHub: {e}")
 
     st.info("💡 **Límite de tokens por usuario**, para garantizar un uso responsable y sostenible.")
-    st.warning("🔒 **Solo validamos tu identidad**, no almacenamos tus datos personales para otros fines.")
+    st.warning("🔒 **Solo validamos tu identidad**, no almacenamos tus datos personales para otros fines.") 
