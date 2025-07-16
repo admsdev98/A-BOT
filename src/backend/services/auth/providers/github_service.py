@@ -3,7 +3,6 @@ import httpx
 from dotenv import load_dotenv, find_dotenv
 
 from services.auth.auth_utils import generate_session_token
-from db.redis_session_store import save_session_by_token, save_session_by_ip
 
 load_dotenv(find_dotenv())
 
@@ -19,7 +18,7 @@ def generate_github_auth_url():
     )
 
 
-async def get_github_auth_data(code, request):
+async def get_github_auth_data(code):
     try:
         async with httpx.AsyncClient() as client:
             response = await client.post(
@@ -39,12 +38,6 @@ async def get_github_auth_data(code, request):
             if auth_data.get("error"):
                 return {"error": "No se pudo completar el login. Por favor, intenta de nuevo."}
             
-            user_session_data = generate_session_token(auth_data)
-
-            save_session_by_token(str(user_session_data.get("session_id")), str(user_session_data.get("token")))
-            save_session_by_ip(request.client.host, str(user_session_data.get("token")))
-
-            return user_session_data
-            
+            return generate_session_token(auth_data)
     except Exception as e:
         return {"error": "No se pudo completar el login. Por favor, intenta de nuevo."} 

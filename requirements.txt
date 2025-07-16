@@ -1,14 +1,18 @@
+fastapi
+uvicorn[standard]
+streamlit
+
 langchain
 langchain-core
 langchain-ollama
 sentence-transformers
-ollama
-streamlit
-fastapi
-uvicorn[standard]
+openai
+
+redis
+
 httpx
 
-# Customs
-debugpy
-openai
-redis
+PyJWT
+
+python-dotenv
+pydantic

@@ -1,42 +1,47 @@
 import streamlit as st
-from services.api_client import validate_auth_url_parameters, validate_user_auth_by_ip, validate_if_user_token_is_alive
+from services.api_client import validate_user_auth_by_session_id, get_remaining_chat_attempts
 
 def initialize_session_state():
-    if "user_token" not in st.session_state:
-        st.session_state["user_token"] = None
+    st.session_state["session_id"] = st.context.cookies.get("session_id")
+    st.session_state["tried_send"] = st.session_state.get("tried_send", False)
+    st.session_state["input_text_saved"] = st.session_state.get("input_text_saved", False)
+    st.session_state["auth_failure_reason"] = st.session_state.get("auth_failure_reason", None)
 
-    if "tried_send" not in st.session_state:
-        st.session_state["tried_send"] = False
+    if "cookies_section" not in st.session_state:
+        st.session_state["cookies_section"] = False
 
-    if "input_text_saved" not in st.session_state:
-        st.session_state["input_text_saved"] = ""
+    if "cookies_accepted" not in st.session_state:
+        st.session_state["cookies_accepted"] = False
 
-def validate_session():
-    validate_auth_url_parameters()
-
-def check_authentication():
-    if st.session_state["user_token"]:
-        try:
-            session_is_alive = validate_if_user_token_is_alive(st.session_state["user_token"])
-            
-            if session_is_alive.get("exists") == False:
-                st.session_state["user_token"] = None
-                st.session_state["auth_failure_reason"] = "session_expired"
-                return False
-                
-            return True
-        except Exception as e:
-            print(f"Error validando token: {e}")
-            st.session_state["user_token"] = None
+def validate_if_user_need_to_authenticate():
+    if not validate_user_session_id():
+        return False
     
+    if not validate_message_attempts():
+        return False
+
+    return True
+    
+ 
+def validate_user_session_id():
+    if "session_id" not in st.session_state:
+        return False
+
     try:
-        ip_validation = validate_user_auth_by_ip()
+        session_id = st.session_state["session_id"]
+        validation_result = validate_user_auth_by_session_id(session_id)
+        return validation_result.get("exists", False)
 
-        if ip_validation.get("exists"):
-            return True
-        else:
-            st.session_state["auth_failure_reason"] = "no_ip_session"
     except Exception as e:
-        print(f"Error validando autenticación por IP: {e}")
-    
-    return False 
+        return False
+
+
+def validate_message_attempts():
+        user_attempts = get_remaining_chat_attempts(st.session_state["session_id"]) 
+        
+        if user_attempts.get("attempts") == False:
+            st.session_state["auth_failure_reason"] = "attempts_exceeded"
+            return False
+        
+        return True
+
