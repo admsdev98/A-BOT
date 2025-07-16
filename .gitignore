@@ -96,11 +96,11 @@ secrets.py
 .env.local
 .env.production
 
+# Personal data files
+src/backend/config/personal_data.md
+
 # Temporary files
 *.tmp
 *.temp
 temp/
 tmp/
-
-# Personal data files (optional - uncomment if you want to exclude)
-# personal_data.py
