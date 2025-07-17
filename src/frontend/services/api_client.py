@@ -1,9 +1,16 @@
+import os
 import httpx
 import streamlit as st
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
+
+BACKEND_URI = os.getenv("BACKEND_URI", "localhost")
+BACKEND_HOST = os.getenv("BACKEND_HOST", "8000")
 
 def get_chat_response(user_query):
     try:
-        response = httpx.post("http://localhost:8000/api/v1/chatbot", json={"user_query": user_query}, timeout=120.0)
+        response = httpx.post(f"http://{BACKEND_URI}:{BACKEND_HOST}/api/v1/chatbot", json={"user_query": user_query}, timeout=120.0)
         response_json = response.json()
 
         if "response" in response_json:
@@ -20,19 +27,19 @@ def get_chat_response(user_query):
 
 def set_user_auth_token(auth_method):
     try:
-        response = httpx.post("http://localhost:8000/api/v1/auth", json={"auth_method": auth_method}, timeout=120.0)
+        response = httpx.post(f"http://{BACKEND_URI}:{BACKEND_HOST}/api/v1/auth", json={"auth_method": auth_method}, timeout=120.0)
         return response.json()
     except Exception as e:
         raise ConnectionError(f"Error al conectar con el servidor: {e}")
 
 def validate_user_auth_by_session_id(session_id):
-    response = httpx.get("http://localhost:8000/api/v1/auth-validate-session", params={"cookie_session": session_id}, timeout=120.0)
+    response = httpx.get(f"http://{BACKEND_URI}:{BACKEND_HOST}/api/v1/auth-validate-session", params={"cookie_session": session_id}, timeout=120.0)
     return response.json()  
 
 def get_remaining_chat_attempts(session_id):
-    response = httpx.get("http://localhost:8000/api/v1/validate-remaining-attempts", params={"cookie_session": session_id}, timeout=120.0)
+    response = httpx.get(f"http://{BACKEND_URI}:{BACKEND_HOST}/api/v1/validate-remaining-attempts", params={"cookie_session": session_id}, timeout=120.0)
     return response.json()
 
 def reduce_chat_attempts(session_id):
-    response = httpx.post("http://localhost:8000/api/v1/reduce-chat-attempts", params={"cookie_session": session_id}, timeout=120.0)
+    response = httpx.post(f"http://{BACKEND_URI}:{BACKEND_HOST}/api/v1/reduce-chat-attempts", params={"cookie_session": session_id}, timeout=120.0)
     return response.json()
