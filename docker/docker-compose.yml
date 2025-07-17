@@ -1,5 +1,3 @@
-version: '3.3'
-
 services:
   redis:
     image: redis:7-alpine
@@ -9,6 +7,8 @@ services:
       - redis_data:/data
     restart: unless-stopped
     command: redis-server --appendonly yes
+    networks:
+      - abot-network
 
   backend:
     build:
@@ -18,19 +18,11 @@ services:
       - "8000:8000"
     env_file:
       - ../.env
-    environment:
-      - PYTHONPATH=/app
-      - ABOT_MODEL=openai
-      - PERSONAL_DATA_MD_PATH=/app/backend/config/personal_data.md
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - FRONT_URI=${FRONT_URI:-localhost}
-      - FRONT_HOST=${FRONT_HOST:-8501}
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - SUPER_KEY=${SUPER_KEY}
     depends_on:
       - redis
     restart: unless-stopped
+    networks:
+      - abot-network
 
   frontend:
     build:
@@ -41,11 +33,13 @@ services:
     env_file:
       - ../.env
     environment:
-      - PYTHONPATH=/app
+      - PYTHONPATH=/src/frontend
       - BACKEND_URL=http://backend:8000
     depends_on:
       - backend
     restart: unless-stopped
+    networks:
+      - abot-network
 
 volumes:
   redis_data:

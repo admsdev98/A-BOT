@@ -7,6 +7,7 @@ from services.chat.rag_service import retrieve_relevant_context, get_system_prom
 
 load_dotenv(find_dotenv())
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_MODEL = os.getenv("OPENAI_MODEL")
 
 def init_client():
     return OpenAI(api_key=OPENAI_API_KEY)
@@ -14,11 +15,11 @@ def init_client():
 def send_message(client, messages):
     try:
         completion = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model=OPENAI_MODEL,
             messages=messages,
             temperature=0.7
         )
-        return '(OPENAI) -' + completion.choices[0].message.content
+        return completion.choices[0].message.content
     except Exception as e:
         return {"error": str(e)}
 
