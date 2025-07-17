@@ -8,11 +8,16 @@ from views.cookies_ui import show_cookies_info
 
 initialize_session_state()
 
+st.set_page_config(
+    page_title="Who Is, A-BOT?",
+    layout="centered"
+)
+
 query_params = st.query_params
 if query_params.get("section") == "cookies":
     show_cookies_info()
 else:
-    st.title("A-BOT - El asistente virtual de Adam")
+    st.title("_:blue[A-BOT]_, el asistente virtual de Adam")
     st.markdown("---")
 
     if not validate_if_user_need_to_authenticate():

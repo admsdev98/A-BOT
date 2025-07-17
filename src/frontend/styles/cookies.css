@@ -1,0 +1,878 @@
+/* ===== COOKIES PAGE STYLES FOR STREAMLIT ===== */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Reset and Base Styles for Streamlit */
+.cookies-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.7;
+    color: #1a1a1a;
+    background: #f7f7f8; /* ChatGPT-style background */
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: none; /* Remove shadow for cleaner look */
+}
+
+.content-wrapper {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e5e5;
+    width: 100%;
+}
+
+/* Typography */
+.cookies-container h1 {
+    color: #1a1a1a;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(1, 133, 222, 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cookies-container h2 {
+    color: #2d3748;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e5e5e5;
+    position: relative;
+}
+
+.cookies-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(1, 133, 222, 0.95), rgba(1, 133, 222, 0.8));
+    border-radius: 1px;
+}
+
+.cookies-container h3 {
+    color: #4a5568;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.cookies-container h4 {
+    color: #2d3748;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* Usage Grid */
+.usage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.2rem;
+    margin: 1.5rem 0;
+}
+
+.usage-item {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.usage-item:hover {
+    border-color: rgba(1, 133, 222, 0.95);
+    box-shadow: 0 2px 8px rgba(1, 133, 222, 0.1);
+}
+
+.usage-item h4 {
+    color: #2d3748;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.usage-item p {
+    color: #1a1a1a;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Cookie Types */
+.cookie-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.2rem;
+    margin: 1.5rem 0;
+}
+
+.cookie-type-item {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.cookie-type-item:hover {
+    border-color: rgba(1, 133, 222, 0.95);
+    box-shadow: 0 2px 8px rgba(1, 133, 222, 0.1);
+}
+
+.cookie-type-item h4 {
+    color: #2d3748;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.cookie-type-item p {
+    color: #1a1a1a;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Table Styles */
+.table-container {
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid #e5e5e5;
+}
+
+.cookies-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    font-size: 0.9rem;
+}
+
+.cookies-table thead {
+    background: #f8f9fa;
+}
+
+.cookies-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #2d3748;
+    border-bottom: 2px solid #e5e5e5;
+}
+
+.cookies-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e5e5;
+    color: #1a1a1a;
+}
+
+.cookies-table tr:hover {
+    background: #f8f9fa;
+}
+
+/* Provider List */
+.provider-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.provider-item {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.provider-item:hover {
+    border-color: rgba(1, 133, 222, 0.95);
+    box-shadow: 0 2px 8px rgba(1, 133, 222, 0.1);
+}
+
+.provider-item h4 {
+    color: #2d3748;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.provider-item p {
+    color: #1a1a1a;
+    margin: 0.3rem 0;
+    font-size: 0.85rem;
+}
+
+/* Management Options */
+.management-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.2rem;
+    margin: 1.5rem 0;
+}
+
+.option {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.option:hover {
+    border-color: rgba(1, 133, 222, 0.95);
+    box-shadow: 0 2px 8px rgba(1, 133, 222, 0.1);
+}
+
+.option h4 {
+    color: #2d3748;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.option p {
+    color: #1a1a1a;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Browser List */
+.browser-list {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1.2rem;
+    margin: 1rem 0;
+}
+
+.browser-list li {
+    margin: 0.5rem 0;
+    color: #1a1a1a;
+    font-size: 0.9rem;
+}
+
+.browser-list strong {
+    color: #2d3748;
+    font-weight: 600;
+}
+
+/* Browser Links */
+.browser-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.browser-link {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.browser-link:hover {
+    border-color: rgba(1, 71, 118, 0.95);
+    box-shadow: 0 2px 8px rgba(1, 133, 222, 0.1);
+}
+
+.browser-link h4 {
+    color: #2d3748;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.browser-link p {
+    color: #1a1a1a;
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+.browser-link a {
+    color: #1a1a1a;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.browser-link a:hover {
+    color: rgba(1, 71, 118, 0.95);
+    text-decoration: underline;
+}
+
+/* Provider Cards Grid */
+.provider-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.2rem;
+    margin: 1.5rem 0;
+}
+
+.provider-card {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 1.2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.provider-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(1, 133, 222, 0.8) 100%);
+}
+
+.provider-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: rgba(1, 133, 222, 0.95);
+}
+
+.provider-card h3 {
+    color: #2d3748;
+    margin-top: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.provider-card p {
+    margin: 0.4rem 0;
+    color: #1a1a1a;
+    font-size: 0.9rem;
+}
+
+.provider-card strong {
+    color: #2d3748;
+    font-weight: 600;
+}
+
+/* Info Cards */
+.cookie-type {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 1.2rem;
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.cookie-type::before {
+    content: '🔒';
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    font-size: 1.2rem;
+    opacity: 0.3;
+}
+
+.data-list {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 1.2rem;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.data-list::before {
+    content: '💾';
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    font-size: 1.2rem;
+    opacity: 0.3;
+}
+
+/* Security Grid */
+.security-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.security-section {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 1.2rem;
+}
+
+.security-section h4 {
+    color: #2d3748;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    text-align: center;
+}
+
+.security-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.security-list li {
+    padding: 0.4rem 0;
+    color: #1a1a1a;
+    font-size: 0.9rem;
+    position: relative;
+    padding-left: 1.3rem;
+}
+
+.security-list li::before {
+    content: '✅';
+    position: absolute;
+    left: 0;
+    font-size: 0.9rem;
+}
+
+.security-list li.negative::before {
+    content: '❌';
+}
+
+/* Warning Box */
+.warning {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 10px;
+    padding: 1.2rem;
+    margin: 1.5rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.warning::before {
+    content: '⚠️';
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    font-size: 1.5rem;
+    opacity: 0.3;
+}
+
+.warning strong {
+    color: #856404;
+    font-size: 1rem;
+}
+
+/* Contact Section */
+.contact-section {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.contact-section h3 {
+    color: #2d3748;
+    margin-bottom: 0.8rem;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, rgba(1, 133, 222, 0.95) 0%, rgba(1, 133, 222, 0.8) 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(1, 133, 222, 0.2);
+    font-size: 0.9rem;
+}
+
+.contact-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(1, 133, 222, 0.3);
+    text-decoration: none;
+    color: white;
+}
+
+/* Links */
+.cookies-container a {
+    color: rgba(1, 133, 222, 0.95);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.cookies-container a:hover {
+    color: rgba(1, 133, 222, 0.8);
+    text-decoration: underline;
+}
+
+/* Text Elements */
+.cookies-container p {
+    margin: 0.8rem 0 !important;
+    color: #1a1a1a !important;
+    font-size: 0.95rem !important;
+}
+
+.cookies-container ul {
+    margin: 0.8rem 0 !important;
+    padding-left: 1.3rem !important;
+}
+
+.cookies-container li {
+    margin: 0.4rem 0 !important;
+    color: #1a1a1a !important;
+    font-size: 0.95rem !important;
+}
+
+/* Override Streamlit default text colors */
+.cookies-container .stMarkdown p {
+    color: #1a1a1a !important;
+}
+
+.cookies-container .stMarkdown li {
+    color: #1a1a1a !important;
+}
+
+/* Force dark text on all elements */
+.cookies-container * {
+    color: #1a1a1a !important;
+    text-decoration: none !important;
+}
+
+/* But allow specific elements to keep their colors */
+.cookies-container h1,
+.cookies-container h2,
+.cookies-container h3,
+.cookies-container h4,
+.cookies-container a,
+.cookies-container .contact-link,
+.cookies-container .cookie-link-bottom-right,
+.cookies-container .cookie-link-bottom-right a {
+    color: inherit !important;
+}
+
+/* Remove text decoration from all text elements */
+.cookies-container p,
+.cookies-container li,
+.cookies-container td,
+.cookies-container th,
+.cookies-container div,
+.cookies-container span {
+    text-decoration: none !important;
+}
+
+.cookies-container p:hover,
+.cookies-container li:hover,
+.cookies-container td:hover,
+.cookies-container th:hover,
+.cookies-container div:hover,
+.cookies-container span:hover {
+    text-decoration: none !important;
+}
+
+/* Floating Cookie Link */
+.cookie-link-bottom-right {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 72, 120, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: white;
+    box-shadow: 0 4px 12px rgba(1, 133, 222, 0.3);
+    z-index: 9999;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+.cookie-link-bottom-right:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(1, 133, 222, 0.4);
+}
+
+.cookie-link-bottom-right a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.cookie-link-bottom-right a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+/* Cookie Button Styles */
+.stButton > button[data-testid="cookie_button"] {
+    background: rgba(0, 72, 120, 0.95) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 20px !important;
+    padding: 10px 16px !important;
+    font-size: 13px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500 !important;
+    box-shadow: 0 4px 12px rgba(1, 133, 222, 0.3) !important;
+    backdrop-filter: blur(10px) !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+    min-width: auto !important;
+    width: auto !important;
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    z-index: 9999 !important;
+}
+
+.stButton > button[data-testid="cookie_button"]:hover {
+    background: rgba(1, 71, 118, 0.95) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(1, 133, 222, 0.4) !important;
+    color: white !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cookies-container {
+        padding: 0.8rem;
+    }
+    
+    .content-wrapper {
+        padding: 1.5rem;
+    }
+    
+    .security-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .provider-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .usage-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .cookie-types {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .management-options {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .provider-list {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .browser-links {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .cookies-container h1 {
+        font-size: 1.8rem;
+    }
+    
+    .cookies-container h2 {
+        font-size: 1.4rem;
+    }
+    
+    .contact-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .cookie-link-bottom-right {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .cookies-table {
+        font-size: 0.8rem;
+    }
+    
+    .cookies-table th,
+    .cookies-table td {
+        padding: 0.8rem;
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.2s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mb-2 {
+    margin-bottom: 1.5rem;
+}
+
+.mt-2 {
+    margin-top: 1.5rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+/* Override Streamlit default styles */
+.cookies-container .stMarkdown {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.cookies-container .element-container {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Additional Streamlit overrides */
+.cookies-container .stMarkdown * {
+    color: #1a1a1a !important;
+}
+
+.cookies-container .stMarkdown p,
+.cookies-container .stMarkdown li,
+.cookies-container .stMarkdown td,
+.cookies-container .stMarkdown span {
+    color: #1a1a1a !important;
+}
+
+/* Force all text to be dark */
+.cookies-container div,
+.cookies-container span,
+.cookies-container td,
+.cookies-container th {
+    color: #1a1a1a !important;
+}
+
+/* Logout Button Styles */
+.logout-container {
+    position: fixed;
+    top: 1rem;
+    right: 2rem;
+    z-index: 1000;
+    width: 120px;
+    min-width: 120px;
+}
+
+.logout-container .stButton > button[data-testid="logout_button"] {
+    background-color: #dc3545 !important;
+    color: white !important;
+    border: 1px solid #dc3545 !important;
+    border-radius: 6px !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    font-family: 'Inter', sans-serif !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+.logout-container .stButton > button[data-testid="logout_button"]:hover {
+    background-color: #c82333 !important;
+    border-color: #c82333 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3) !important;
+}
+
+/* Back Button Styles */
+.stButton > button[data-testid="back_button"] {
+    background-color: rgba(1, 133, 222, 0.95) !important;
+    color: white !important;
+    border: 1px solid rgba(1, 133, 222, 0.95) !important;
+    border-radius: 6px !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    font-family: 'Inter', sans-serif !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+.stButton > button[data-testid="back_button"]:hover {
+    background-color: rgba(1, 71, 118, 0.95) !important;
+    border-color: rgba(1, 71, 118, 0.95) !important;
+    color: white !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 4px rgba(1, 133, 222, 0.3) !important;
+}

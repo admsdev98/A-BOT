@@ -1,7 +1,13 @@
 [theme]
 primaryColor = "#a8dadc"
-backgroundColor = "#F9F1DF"
+backgroundColor = "#f7f7f8"
 secondaryBackgroundColor = "#ffffff"
 textColor = "#24292e"
 font = "sans serif"
 base = "light"
+
+[client]
+toolbarMode = "viewer"
+
+[ui]
+hideTopBar = true

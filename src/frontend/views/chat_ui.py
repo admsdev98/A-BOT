@@ -3,7 +3,7 @@ from services.api_client import get_chat_response, reduce_chat_attempts
 from views.cookies_ui import show_cookies_info_into_chat
 
 def set_first_message():
-    first_message = "Hola, soy A-BOT, el asistente virtual de Adam. ¿En qué puedo ayudarte hoy?"
+    first_message = "Hola! ¿En qué puedo ayudarte hoy?"
     if "messages" not in st.session_state:
         st.session_state.messages = []
     if not st.session_state.get("first_message", False):
@@ -22,7 +22,7 @@ def main_chat():
             st.markdown(user_query)
         st.session_state.messages.append({"role": "user", "content": user_query})
 
-        with st.spinner("A-BOT está pensando..."):
+        with st.spinner("Dejame pensar..."):
             response = None
             try:
                 response = get_chat_response(user_query)
@@ -35,6 +35,8 @@ def main_chat():
             st.session_state.messages.append({"role": "assistant", "content": response})
 
         try:
+            st.markdown("quitamos un intento")
+            st.markdown(st.session_state["session_id"])
             reduce_chat_attempts(st.session_state["session_id"])
         except Exception as e:
             print(f"Error reducing attempts: {e}")

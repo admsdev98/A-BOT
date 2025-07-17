@@ -10,7 +10,7 @@ def show_auth_dialog():
     if st.session_state.get("auth_failure_reason") == "attempts_exceeded":
         st.markdown("### Vaya! Has agotado tus intentos de chat")
         st.markdown(
-            "Adam limita el número de mensajes, ya que ayuda a controlar los costes y garantizar que todos los visitantes puedan interactuar mensualmente. "
+            "Hemos limitado el número de mensajes, ya que ayuda a controlar los costes y garantizar que todos los visitantes puedan interactuar con el chat. "
         )    
     elif st.session_state.get("tried_send") or st.session_state.get("auth_failure_reason") == "no_ip_session":
         st.markdown("### 🛑 Alto 🛑 Identifícate para chatear con A-BOT!")
@@ -126,7 +126,7 @@ def show_auth_dialog():
     if st.session_state.get("auth_failure_reason"): 
 
         st.markdown("¿Te gustaría contactar con Adam para una entrevista?")
-        mail = "mailto:adam@example.com?subject="
+        mail = "mailto:adam98develop@gmail.com?subject="
         message = return_mail_message_template()
         formatted_mail = mail + message
     
@@ -135,7 +135,7 @@ def show_auth_dialog():
             <svg width="18" height="18" viewBox="0 0 24 24" style="margin-right: 8px;">
                 <path fill="white" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
             </svg>
-            Enviar correo!
+            Claro!
         </a>
         ''', unsafe_allow_html=True)
 
