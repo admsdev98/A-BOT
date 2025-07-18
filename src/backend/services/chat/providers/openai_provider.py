@@ -24,14 +24,34 @@ def send_message(client, messages):
         return {"error": str(e)}
 
 def get_openai_response(user_query):
-    client = init_client()
-    retrieved_context = retrieve_relevant_context(user_query)
+    try:
+        client = init_client()
+        retrieved_context = retrieve_relevant_context(user_query)
 
-    messages = [
-        {"role": "system", "content": get_system_prompt()},
-        {"role": "assistant", "content": f"Contexto relevante:\n{retrieved_context}"},
-        {"role": "user", "content": user_query}
-    ]
+        messages = [
+            {"role": "system", "content": get_system_prompt()},
+            {"role": "user", "content": f"""
+            ### Pregunta que hace el usuario:
+            {user_query}
 
-    return send_message(client, messages)
+            ### Contexto que hemos obtenido:
+            {retrieved_context}"""}
+        ]
+
+        try:
+            response = send_message(client, messages)
+            return response
+        except Exception as e:
+            print(f"Error en send_message: {str(e)}")
+            return {
+                "content": "Lo siento, ha ocurrido un error al procesar tu pregunta. Por favor, inténtalo de nuevo en unos momentos.",
+                "error": str(e)
+            }
+
+    except Exception as e:
+        print(f"Error en get_openai_response: {str(e)}")
+        return {
+            "content": "Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo.",
+            "error": str(e)
+        }
     
