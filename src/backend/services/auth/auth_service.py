@@ -23,11 +23,11 @@ def generate_auth_redirect_uri(auth_data):
     front_host = os.getenv("FRONT_HOST", "8501")
 
     if auth_data.get("token"):
-        redirect_path = f"http://{front_uri}:{front_host}/?token={auth_data.get('token')}"
+        redirect_path = f"https://{front_uri}:{front_host}/?token={auth_data.get('token')}"
     elif auth_data.get("error"):
-        redirect_path = f"http://{front_uri}:{front_host}/?error=true"
+        redirect_path = f"https://{front_uri}:{front_host}/?error=true"
     else:
-        redirect_path = f"http://{front_uri}:{front_host}/?error=something_went_wrong"
+        redirect_path = f"https://{front_uri}:{front_host}/?error=something_went_wrong"
 
     response = RedirectResponse(url=redirect_path)
 
