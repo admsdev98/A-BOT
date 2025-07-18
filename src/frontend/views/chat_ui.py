@@ -35,8 +35,6 @@ def main_chat():
             st.session_state.messages.append({"role": "assistant", "content": response})
 
         try:
-            st.markdown("quitamos un intento")
-            st.markdown(st.session_state["session_id"])
             reduce_chat_attempts(st.session_state["session_id"])
         except Exception as e:
             print(f"Error reducing attempts: {e}")
