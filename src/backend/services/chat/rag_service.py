@@ -1,3 +1,4 @@
+import os
 from functools import lru_cache
 from pathlib import Path
 
@@ -5,7 +6,9 @@ from dotenv import load_dotenv, find_dotenv
 from sentence_transformers import SentenceTransformer, util
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-load_dotenv(find_dotenv())
+env_file = ".env.local" if os.getenv("ENVIRONMENT") == "local" else ".env"
+load_dotenv(find_dotenv(env_file))
+
 PERSONAL_DATA_PATH = Path(__file__).parents[2] / "config" / "personal_data.md"
 
 @lru_cache(maxsize=1)

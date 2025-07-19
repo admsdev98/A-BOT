@@ -5,7 +5,9 @@ from interfaces.chatbot import ChatRequest
 from services.chat.providers.openai_provider import get_openai_response
 from services.chat.providers.local_provider import get_local_chat_response
 
-load_dotenv(find_dotenv())
+env_file = ".env.local" if os.getenv("ENVIRONMENT") == "local" else ".env"
+load_dotenv(find_dotenv(env_file))
+
 ABOT_MODEL = os.getenv("ABOT_MODEL")
 
 def get_chat_response(chat_request: ChatRequest):

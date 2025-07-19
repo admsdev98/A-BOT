@@ -5,7 +5,9 @@ from openai import OpenAI
 
 from services.chat.rag_service import retrieve_relevant_context, get_system_prompt
 
-load_dotenv(find_dotenv())
+env_file = ".env.local" if os.getenv("ENVIRONMENT") == "local" else ".env"
+load_dotenv(find_dotenv(env_file))
+
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL")
 

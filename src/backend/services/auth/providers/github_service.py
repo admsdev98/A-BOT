@@ -4,8 +4,8 @@ from dotenv import load_dotenv, find_dotenv
 
 from services.auth.auth_utils import generate_session_token
 
-load_dotenv(find_dotenv())
-
+env_file = ".env.local" if os.getenv("ENVIRONMENT") == "local" else ".env"
+load_dotenv(find_dotenv(env_file))
 
 def generate_github_auth_url():
     return (

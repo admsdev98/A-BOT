@@ -6,7 +6,8 @@ from dotenv import load_dotenv, find_dotenv
 
 from db.redis_session_store import get_session_token, get_session_attempts, save_session_by_token, initialize_session_attempts, update_session_attempts
 
-load_dotenv(find_dotenv())
+env_file = ".env.local" if os.getenv("ENVIRONMENT") == "local" else ".env"
+load_dotenv(find_dotenv(env_file))
 
 SECRET_KEY = os.getenv("SUPER_KEY")
 

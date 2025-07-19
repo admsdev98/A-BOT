@@ -3,7 +3,8 @@ import httpx
 import streamlit as st
 from dotenv import load_dotenv, find_dotenv
 
-load_dotenv(find_dotenv())
+env_file = ".env.local" if os.getenv("ENVIRONMENT") == "local" else ".env"
+load_dotenv(find_dotenv(env_file))
 
 BACKEND_BASE_URL = os.getenv("BACKEND_BASE_URL", "http://localhost:8000").rstrip("/")
 
