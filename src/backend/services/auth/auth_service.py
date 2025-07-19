@@ -18,16 +18,22 @@ def generate_auth_response(auth_method: AuthRequest):
     elif method == "google":
         return generate_google_auth_url()
 
+
 def generate_auth_redirect_uri(auth_data):
     front_uri = os.getenv("FRONT_URI", "localhost")
-    front_host = os.getenv("FRONT_HOST", "8501")
+    front_host = os.getenv("FRONT_HOST", "")  # vacío si puerto 443
+
+    if front_host and front_host != "443":
+        base_url = f"https://{front_uri}:{front_host}"
+    else:
+        base_url = f"https://{front_uri}"
 
     if auth_data.get("token"):
-        redirect_path = f"https://{front_uri}:{front_host}/?token={auth_data.get('token')}"
+        redirect_path = f"{base_url}/?token={auth_data.get('token')}"
     elif auth_data.get("error"):
-        redirect_path = f"https://{front_uri}:{front_host}/?error=true"
+        redirect_path = f"{base_url}/?error=true"
     else:
-        redirect_path = f"https://{front_uri}:{front_host}/?error=something_went_wrong"
+        redirect_path = f"{base_url}/?error=something_went_wrong"
 
     response = RedirectResponse(url=redirect_path)
 
