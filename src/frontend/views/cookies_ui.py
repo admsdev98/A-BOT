@@ -131,15 +131,3 @@ def show_cookies_info():
 
     st.stop()
 
-def show_cookies_info_into_chat():
-    load_css("cookies.css")
-    
-    return st.markdown(
-    """
-    <div class="cookie-link-bottom-right">
-        <a href='?section=cookies'>¿Que cookies usamos?</a>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-

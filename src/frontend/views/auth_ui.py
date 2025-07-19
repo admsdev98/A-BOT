@@ -123,7 +123,7 @@ def show_auth_dialog():
     </style>
     """, unsafe_allow_html=True)
 
-    if st.session_state.get("auth_failure_reason"): 
+    if st.session_state.get("auth_failure_reason") == "attempts_exceeded":
 
         st.markdown("¿Te gustaría contactar con Adam para una entrevista?")
         mail = "mailto:adam98develop@gmail.com?subject="

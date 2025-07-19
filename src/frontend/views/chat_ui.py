@@ -1,9 +1,9 @@
 import streamlit as st
+
 from services.api_client import get_chat_response, reduce_chat_attempts
-from views.cookies_ui import show_cookies_info_into_chat
 
 def set_first_message():
-    first_message = "Hola! ¿En qué puedo ayudarte hoy?"
+    first_message = "Hola! Preguntame lo que quieras"
     if "messages" not in st.session_state:
         st.session_state.messages = []
     if not st.session_state.get("first_message", False):
@@ -11,8 +11,7 @@ def set_first_message():
         st.session_state.first_message = True
 
 def main_chat():
-    user_query = st.chat_input("Escribe tu mensaje aquí...", key="input_text")
-    show_cookies_info_into_chat()
+    user_query = st.chat_input("Escribe tu mensaje aquí...", key="chat_input_main")
 
     if user_query:
         st.session_state["input_text_saved"] = user_query
