@@ -17,5 +17,4 @@ initialize_session_state()
 if not validate_if_user_need_to_authenticate():
     show_auth_dialog()
 else:
-    with st.container(key="chat_page_container"):
-        render_chat_interface() 
+    render_chat_interface() 
