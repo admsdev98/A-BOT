@@ -10,18 +10,7 @@ st.set_page_config(
     layout="centered"
 )
 
-def render_navigation_bar():
-    pages = [
-        st.Page("pages/chat.py", title="Chat"),
-        st.Page("pages/cookies.py", title="Como usamos las cookies")
-    ]
-    
-    pg = st.navigation(pages)
-    pg.run()
-
-
 initialize_session_state()
-
 
 query_params = st.query_params
 if query_params.get("section") == "cookies":
@@ -30,4 +19,11 @@ else:
     if not validate_if_user_need_to_authenticate():
         show_auth_dialog()
     else:
-        render_navigation_bar()
+        pages = [
+            st.Page("pages/chat.py", title="Chat"),
+            st.Page("pages/cookies.py", title="Como usamos las cookies")
+        ]
+        
+        pg = st.navigation(pages)
+        pg.run()
+

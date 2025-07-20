@@ -29,7 +29,7 @@ def generate_auth_redirect_uri(auth_data):
         base_url = f"https://{front_uri}"
 
     if auth_data.get("token"):
-        redirect_path = f"{base_url}/?token={auth_data.get('token')}"
+        redirect_path = f"{base_url}/?logged=true"
     elif auth_data.get("error"):
         redirect_path = f"{base_url}/?error=true"
     else:
