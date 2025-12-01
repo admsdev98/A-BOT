@@ -5,6 +5,8 @@ streamlit
 langchain
 langchain-core
 langchain-ollama
+langchain-text-splitters
+langchain-community
 sentence-transformers
 openai
 
