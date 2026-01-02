@@ -1,5 +1,3 @@
-fastapi
-uvicorn[standard]
 streamlit
 httpx
 python-dotenv
