@@ -4,7 +4,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv, find_dotenv
 from sentence_transformers import SentenceTransformer, util
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 env_file = ".env.local" if os.getenv("ENVIRONMENT") == "local" else ".env"
 load_dotenv(find_dotenv(env_file))

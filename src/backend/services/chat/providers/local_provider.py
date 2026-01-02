@@ -1,4 +1,4 @@
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 from langchain_ollama import OllamaLLM
 
 from services.chat.rag_service import retrieve_relevant_context, get_chatbot_prompt_template
